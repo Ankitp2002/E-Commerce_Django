@@ -1,0 +1,45 @@
+{% extends 'Home.html' %}
+{% block content %}
+    <div>
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="text-center">My cart</h1>
+            </div>
+            <div class="col-sm-12 m-3">
+                <div class="">
+                    {% for i in prodata %}
+                    <div class="card mt-2" style="width:100%;">
+                        <div class="row m-2">
+                            <div class="col-sm-3">
+                                <img class="card-img-top m-2" src="{{i.productimage.url }}" style="height :150px;" alt="Card image cap">
+                            </div>
+                            <div class="col-sm-7">
+                            <div class="m-2">
+                                <h3 class=""> {{i.productname}}</h3>
+                                <p class=""> ₹{{i.productprice}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 mt-4 ">
+                                {% comment %} <h4 id="Quntity">
+                                    <button class="decrement">-</button>
+                                    <div class="main"></div>
+                                    <button class="increment">+</button> 
+                                </h4> {% endcomment %}
+                                {% for j in quantity_price_data %}
+                                    {% if i.productID == j.pro_id %}
+                                        <p>Total :₹{{j.Product_Quty_price}} </p>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="btn float-right mr-3">
+            <a href="{% url 'shipingurl' %}"><div class=""><strong><button><b>Shiping & payment</b></button></strong></div></a></div>
+        <div class="btn float-right mr-5">Total price :<strong>₹{{ttp}}</strong></div>
+        <div class="btn float-right mr-5">Total product : <strong>{{tp}}</strong></div>
+    </div>
+{% endblock %}

@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="{% static 'js/cart.js' %}"></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> {% endcomment %}
+     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script> 
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/additional-methods.min.js"></script>
+    {% comment %} <script>
+        $(document).ready( function(){
+            var x = 0;
+            $('.decrement').click(function(){
+                if( x==0 ){
+                $('.main').text(x)
+            }
+            else if (x!=0){
+                x=x-1
+                $('.main').text(x)
+                }
+            });
+            $('.increment').click(function(){
+                x = x+1
+                $('.main').text(x)
+            });
+
+        });
+    </script>     {% endcomment %}
+</head>
+<body class="">
+    <div class="container-fluid ">
+        <div class="container-fluid bg-dark text-white">
+            <nav class="navbar mt-4 ">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand text-white"  style="font-size:x-large ;"> <i class="fa fa-cc-amex" aria-hidden="true"> A.B.Engine</i></a>
+                    </div>
+                    <!-- <li ><a href="#"  class="text-white m-2">Home</a></li> -->
+                    <!-- <li><a href="#" class="text-white m-2">Page 1</a></li> -->
+                    <li><a href="{% url 'proall' %}" class="text-white">All product</a></li>
+                    <li><a href="{% url 'Catogery' %}" class="text-white">All Catogery</a></li>
+                    {% if nav_cat.userdata.userId %}
+                        <li><a href="{% url 'Carturl' %}" class="text-white">My cart</a></li>
+                        <li><a href="{% url 'shipingurl' %}" class="text-white"> Shiping data</a></li>
+                        <li><a href="{% url 'orderlisturl' %}" class="text-white"> Order List</a></li>
+                    {% else %}
+                    <!-- <script>alert('{{Error}}')</script> -->
+                        <li><a href="{% url 'Login' %}" class="text-white"> My cart</a></li>
+                    {% endif %}
+                    {% if nav_cat.userdata.userId %}  
+                    
+                    <li><a href="{% url 'faviourateurl' %}" class="text-white m-2">faviourate_list</a></li>
+                    <li><a href="{% url 'abouturl' %}" class="text-white m-2">About</a></li>
+                    <li><a href="{% url 'profileurl' %}" class="text-white m-2">Profile</a></li>
+                    <li><a href="{% url 'E_app' %}" class="text-white">Instagram</a></li>
+                    <li><a href="{% url 'Logout' %}" class="text-white m-2">Log out</a></li>
+                    {% else %}
+                    <ul class="nav ">
+                        <li><a href="{% url 'Register' %}" class="text-white m-2"> Sign up</a></li>
+                        <li><a href="{% url 'Login' %}" class="text-white m-2">Login</a></li>
+                    </ul>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+            <div class="container-fluid bg-secondary text-white mt-1">
+                <div class="container ">
+                    <div class="row">
+                        <div class="col-sm-3  ">
+                            <h3 class=" pl-5 m-1"><a href="{% url 'Catogery' %}" class="text-white"> Catogery</a></h3>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="container">
+                                <div class="row m-1">
+                                    {% for i in nav_cat.catogery_array %}
+                                    <div >
+                                        <div class="col-sm-2 mt-2 ">
+                                            <div class="dropdown ">
+                                                <a class="text-white dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                  {{i.cat_name}}
+                                                </a>
+                                                {% for j in i.subcat_data %}
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href="{% url 'Product' j.subcat_id %}">{{j.subcat_name}}</a>
+                                                    {% for k in j.proArray %}
+                                                        {% if j.proId %}
+                                                        <a class="dropdown-item" href="{'% url 'prodetails' %'}">{{k.proName}}</a>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    </div>
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>    
+                                
+                                    </div>
+                                    {% endfor %}
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                                <form action="" method="POST" class="mt-2">
+                                    {% csrf_token %}
+                                    <div class="input-group m-1">
+                                    <input name="type1" value="search" hidden/>
+                                    <input type="search" class="form-control rounded" placeholder="Search" name="searchbutton" aria-label="Search" aria-describedby="search-addon" />
+                                    <button type="submit" class="btn text-white">search</button> 
+                                    {% comment %} <a href="{% url 'searchurl' %}" class="text-white"> search page </a> {% endcomment %}
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+        <div class="container bg-light">
+            <div class="row">
+                
+                    <div class="col-md-12">
+                        <div class="m-3">
+                        {% block content %}
+                        {% endblock %}
+                    </div></div>
+            </div>
+    </div>
+      
+        
+</body>
+</html>

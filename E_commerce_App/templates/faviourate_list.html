@@ -1,0 +1,63 @@
+{% extends 'Home.html' %}
+{% block content %}
+    <div class="m-3">
+        {% if Error %}
+        <h2>{{Error}}</h2>
+        {% endif %}
+        <div class="row">
+            <div class="col-sm-12">
+            <h1 class="text-center mt-3">Favriout_List</h1>
+            </div>
+            <div class="col-sm-12 m-3">
+                <div class="">
+                    {% for i in fav_data %}
+                    <div class="card mt-2" style="width:100%;">
+                        <div class="row m-2">
+                            <div class="col-sm-3">
+                                <img class="card-img-top m-2" src="{{i.pro_img.url }}" style="height :150px;" alt="Card image cap">
+                            </div>
+                            <div class="col-sm-7">
+                            <div class="m-2">
+                                <h3 class=""> {{i.pro_name}}</h3>
+                                <p class=""> ₹{{i.pro_price}}</p>
+                                <p class=""> {{i.pro_dec}}</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 mt-4 ">
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="form-group form-button">
+                                    <input name="proId" id="proId" class="form-submit"
+                                        value="{{i.pk}}" hidden />
+                                        <input name="type1" id="type1" class="form-submit"
+                                        value="detail" hidden />
+                                    <input type="submit" name="signup" id="signup" class="form-submit"
+                                        value="View" />
+                                </div>
+                            </form>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="form-group form-button">
+                                    <input name="proId" id="proId" class="form-submit"
+                                        value="{{i.pk}}" hidden />
+                                        <input name="type1" id="type1" class="form-submit"
+                                        value="cart" hidden />
+                                        
+                                        <input type="submit" name="cart" id="cart" class="form-submit"
+                                        value="Add To Cart" />
+                
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% comment %} <div class="btn float-right mr-3">
+            <a href="{% url 'shipingurl' %}"><div class=""><strong><button><b>Shiping & payment</b></button></strong></div></a></div>
+        <div class="btn float-right mr-5">Total price :<strong>₹{{ttp}}</strong></div>
+        <div class="btn float-right mr-5">Total product : <strong>{{tp}}</strong></div> {% endcomment %}
+    </div>
+{% endblock %}

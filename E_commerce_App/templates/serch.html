@@ -1,0 +1,29 @@
+{% extends 'Home.html' %}
+{% block content %}
+{% comment %} <form  method="GET"> {% endcomment %}
+        {% comment %} {% for k in s %} {% endcomment %}
+        <form method="POST">
+                {% csrf_token %}
+                <div class="input-group m-1">
+                {% comment %} <input type="search" class="form-control rounded" placeholder="Search" name="searchbutton" /> {% endcomment %}
+                {% comment %} <button type="submit" class="btn text-balck">search</button> {% endcomment %}
+                {% comment %} <a href="{% url 'searchurl' %}"> search page </a> {% endcomment %}
+            </div>
+        </form>
+        <div class="row">
+                
+                {% for i in serch_data %}
+                <div class="col-md-4">
+                        <div class="m-4">
+                                <img src="{{ i.img.url }}" style="height: 200px; width:100% ;" />
+                                <h3 class="text-center">{{ i.price }}</h3>    
+                                <h3 class="text-center">{{ i.name }}</h3>    
+                        </div>
+                </div>
+                {% endfor %}
+                {% if Error %}
+                        {{Error}}
+                {% endif %}
+        </div>
+        
+{% endblock %}

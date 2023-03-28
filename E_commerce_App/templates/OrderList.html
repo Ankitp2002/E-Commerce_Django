@@ -1,0 +1,28 @@
+{% extends 'Home.html' %}
+{% block content %}
+    <div>
+        <h1 class="text-center">Order History</h1>
+        {% for i in order_session %}
+        <hr>
+        <h3 class="mt-4" >Order id : {{i.orderId}}</h3>
+        <h3>user name : {{i.name}}</h3>
+       
+        <h3>payment type : {{i.payment}}</h3>
+        <h3>Date & Time : {{i.time}}</h3>
+        <br>
+        <form method="POST">
+        {% csrf_token %}
+        <div class="form-group form-button">
+            <input name="o_id" class="form-submit"
+                value="{{i.orderId}}" hidden />
+                <input name="type1" value="search" hidden/>
+                <input name="type1" value="details" hidden/>
+                
+                <input type="submit" name="order_details" class="form-submit"
+                value="details" />
+
+        </div>
+        </form>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div style="align-items: center; text-align: center; width: 400px; margin:auto; border:1rem solid; ">
+        <form style="margin: 3rem;" method="POST">
+            {% csrf_token %}
+            <h1>Instagram</h1>
+            <hr>
+            <pre>Sign up to see photos and videos <br>from your friends.        </pre>
+            <button style="color:rgb(51, 143, 242) ;"><img > Log in with facebook</button>
+            <h3>or</h3>
+            <hr>
+                <label> 
+                    <input type="text" name="Loginemail" pattern="[a-z]+@+[a-z]+.+[a-z]" placeholder="your email" />
+                </label>
+                <br>
+                <br>
+                <label> 
+                    <input type="text" name="pass" placeholder="Enter paswword" />
+                </label>
+                <br>
+                <hr>
+                <a href="{% url 'Catogery' %}">trmp login</a>
+                <hr>
+                <br>
+                {% if Error %}
+                <script>alert('{{Error}}')</script>
+                {% endif %}
+                <a><button type="submit">Login</button></a>
+                <p>if you don't have account so please <a href="{% url 'Register' %}"> Register</a> Hear</p>
+                
+        </form>
+    </div>
+</body>
+</html>

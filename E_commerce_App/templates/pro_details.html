@@ -1,0 +1,20 @@
+{% extends 'Home.html' %}
+{% block content %}
+    <div >
+        <div class="row">
+            <div class="col-sm-12 m-3">
+            <div class="mt-5">
+            <div class="card" style="width:100%;">
+                <img class="card-img-top" src="{{Prodetail.img.url}}" style="height :300px;" alt="Card image cap">
+                <div class="card-body">
+                    <h3 class="card-title">{{Prodetail.Catogary}}</h3>
+                    <h4 class="card-title">{{Prodetail.Product_name}}</h4>
+                    <p class="card-text">{{Prodetail.Product_dec}}</p>
+                    <a href="{% url 'prodetails' %}" class="btn btn-primary">{{Prodetail.Product_price}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}

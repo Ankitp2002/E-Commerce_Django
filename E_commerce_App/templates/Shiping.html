@@ -1,0 +1,38 @@
+{% extends 'Home.html' %}
+{% block content %}
+    <div class="">
+        <h1 class="text-center">Shiping Product </h1>
+        <div class="row">
+            <div class="col-sm-12 m-3">
+                <div class="">
+                    <div class="card" style="width:100%;">
+                        <div class="row">
+                            <div class="col-sm-12">
+                            <div class="m-5">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input name="type1" value="shipping" hidden/>
+                                <hr><h5  class="ml-5"><lable  class="ml-5"> Name :</lable> <input type="text" name="name"  value="{{nav_cat.userdata.userName}}" /></h5>
+                                <hr>    <h5  class="ml-5" ><lable  class="ml-5"> Email :</lable> <input type="text" name="Email"  value="{{nav_cat.userdata.userEmail}}" /></h5>
+                                <hr>    <h5 class="ml-5"><lable  class="ml-5">Address :</lable> <textarea type="text" name="Address"></textarea></h5>
+                                <hr>    <h5 class="ml-5"><lable  class="ml-5">Contect :</lable> <input type="text" name="Contect"  value="{{nav_cat.userdata.userContect}}" /></h5>
+                                <hr>    <h5 class="ml-5"><lable  class="ml-5">Area :</lable> <input type="text" name="Area"  value="" /></h5>
+                                <hr>    <h5 class="ml-5"><lable  class="ml-5">City :</lable> <input type="text" name="city"  value="" /></h5>
+                                <hr>    <h5 class="ml-5"><lable  class="ml-5">Pincode :</lable> <input type="text" name="Pincode"  value="" /></h5>
+                                <hr>    <h5 class="ml-5"><lable  class="ml-5">Payment Type :  </lable> <input type="radio" name="Payment type" value="cash on delivary"/>  cash on delivary   <input type="radio" name="Payment type" value="online"/> online</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6  ">
+                            <h2 class="float-right" >Total Amount :{{ttp}}</p>
+                            </div>
+                            <div class="col-sm-5 mt-2">
+                                <div class="float-right "><strong><button type ="submit"><b>Conform &  payment</b></button></strong></div>
+                            </div></div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+    </div>
+{% endblock %}

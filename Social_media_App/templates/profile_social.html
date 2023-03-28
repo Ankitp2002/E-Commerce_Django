@@ -1,0 +1,24 @@
+{% extends 'Social_Home.html' %}
+
+{% block content %}
+<div >
+    <div class="row">
+        <div class="col-sm-12 ">
+            <div class="mt-5">
+                <hr>
+                <h1 class="text-center">Your Profile</h1>
+                <hr>
+                <div class=" ">
+                <div class="card" style="width:100%;">
+                <img class="card-img-top mt-4 align-self-center" src="{{profile_user.image.url}}" style="width:80% ;" alt="Card image cap">
+            <h3 class="card-title text-center">{{profile_user.Name}}</h3>
+                <h4 class="card-title ml-5 pl-5">Conetct : {{profile_user.Mo_No}}</h4>
+                <p class="card-text ml-5 pl-5">Email :  {{profile_user.Email}}</p>
+                <a href="{% url 'Catogery' %}" class="btn btn-primary center-block " style="width:80% ;">{{profile_user.Password}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div style="align-items: center; text-align: center; width:50%; margin:auto; border:1rem solid; ">
+        <form style="margin: 3rem;" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1>Register</h1>
+            <hr>
+            <pre>Sign up to see photos and videos <br>from your friends.        </pre>
+            <button style="color:rgb(51, 143, 242) ;"><img > Log in with facebook</button>
+            <h3>or</h3>
+                <label> 
+                    Name : <input type="text" name="name" placeholder="your name" /> 
+                </label>
+                <hr>
+                <label> 
+                    Number : <input type="tel" pattern="^[7-9]{4}[0-9]{6}$"  name="number" placeholder="your number" value="9898714699" required/>
+                </label>
+                <hr>
+                <label> 
+                    Email :  <input type="text" pattern="[a-z]+@+[a-z]+.+[a-z]" name="email" placeholder="your email" value="ankit@gmail.com" /> 
+                </label>
+                <hr>
+                <label> 
+                    Password : <input type="text" placeholder="your password" name="pas" />
+                    Conform Password : <input type="text" placeholder="conform password" name="re_pas" /> 
+                </label>
+                <hr><br>
+                Your Image : <input type="file" value="image" name="image"/>
+                <hr>
+                {% if Error %}
+                <script>alert('{{Error}}')</script>
+                {% endif %}
+                
+                <input type="submit">
+                <p>Back to <a href="{% url 'Login' %}">Login</a></p>
+        </form>
+    </div>
+</body>
+</html>

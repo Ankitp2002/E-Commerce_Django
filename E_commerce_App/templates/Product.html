@@ -1,0 +1,60 @@
+{% extends 'Home.html' %}
+{% block content %}
+    <div >
+        {% if Error %}
+        <h1>{{Error}}</h1>
+        {% endif %}
+        <div class="row">
+        {% for i in Product_key %}
+            <div class="col-sm-4 m-3">
+            <div class="mt-5">
+            <div class="card" style="width:100%;">
+                <img class="card-img-top" src="{{i.img.url}}" style="height :300px;" alt="Card image cap">
+                <div class="card-body">
+                    <h3 class="card-title">{{i.Catogary}}</h3>
+                    <h4 class="card-title">{{i.Product_name}}</h4>
+                    <p class="card-text">{{i.Product_dec}}</p>
+                    <a href="#" class="btn btn-primary">{{i.Product_price}}</a>
+                </div>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group form-button">
+                    <input name="proId" id="proId" class="form-submit"
+                        value="{{i.pk}}" hidden />
+                        <input name="type1" id="type1" class="form-submit"
+                        value="detail" hidden />
+                    <input type="submit" name="signup" id="signup" class="form-submit"
+                        value="View {{i.pk}}" />
+                </div>
+            </form>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group form-button">
+                    <input name="proId" id="proId" class="form-submit"
+                        value="{{i.pk}}" hidden />
+                        <input name="type1" id="type1" class="form-submit"
+                        value="cart" hidden />
+                        
+                        <input type="submit" name="cart" id="cart" class="form-submit"
+                        value="Add To Cart" />
+
+                </div>
+            </form>
+         <form method="POST">
+                {% csrf_token %}
+                <div class="form-group form-button">
+                    <input name="proId" id="proId" class="form-submit"
+                        value="{{i.pk}}" hidden />
+                        <input name="type1" id="type1" class="form-submit"
+                        value="fev" hidden />
+                        <input type="submit" name="cart" id="cart" class="form-submit"
+                        value="Like" />
+                </div>
+            </form> 
+        </div>
+    </div>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}
